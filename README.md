@@ -40,7 +40,7 @@ url)
 - Adding of Testing Tools for Continous Testing.
 - Security Tools Integration
 - Prometheous AlertManager Intergation
-- Graphna Integration
+- Grafana Integration
 
-  
+  Sample App Code Taken From: https://github.com/callicoder/spring-boot-actuator-demo
   
