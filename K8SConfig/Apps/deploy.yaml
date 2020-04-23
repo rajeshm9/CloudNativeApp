@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-deployment
+  labels:
+    app: tomcat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tomcat
+  template:
+    metadata:
+      labels:
+        app: tomcat
+    spec:
+      containers:
+      - name: tomcat
+        image: rajeshm9/webapp
+        ports:
+        - containerPort: 9080
+        readinessProbe:
+         httpGet:
+           path: /health
+           port: 9080
+         initialDelaySeconds: 15
+         periodSeconds: 5
+        livenessProbe:
+         tcpSocket:
+          port: 9080
+         initialDelaySeconds: 10
+         periodSeconds: 5
+        volumeMounts:
+          - name: vol
+            mountPath: /var/log/wepapp/logs
+
+      volumes:
+        - name: vol
+          hostPath:
+           path: /var/log/tomcat
