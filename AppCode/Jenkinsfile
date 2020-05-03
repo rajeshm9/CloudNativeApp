@@ -1,0 +1,73 @@
+pipeline {
+    agent any
+    environment {
+		RELEASE_DATE = new Date().format('yy.M.d')
+		BUILD_NUM = "${RELEASE_DATE}.${BUILD_TAG}"
+		
+		
+    }
+
+    options {
+       
+        timeout(time: 30, unit: "MINUTES")
+        disableConcurrentBuilds()
+        buildDiscarder(logRotator(numToKeepStr: '25'))
+
+    }
+    triggers {
+	
+    }
+
+    stages {
+		stage ('Checkout Code')
+		{
+			steps {
+				echo "Build Code ${BUILD_NUM}"
+			}
+		}
+        stage('Build Code')
+        {
+            steps {
+				echo "Build Code ${BUILD_NUM}"
+			}
+        }
+
+    	stage('Build Docker Image')
+		{
+			
+			steps {
+				echo "Deploying to Production Server "
+
+			}
+		}
+        stage('Deploy to K8S Cluster')
+        {
+            steps {
+				echo "Deploying to Production Server "
+
+			}
+        }
+   
+		
+		
+    }
+	post {
+
+        success {
+		    echo "Send Success Notification"
+		   
+			
+		}
+        failure {
+			echo "Send Failure Notification"
+		 
+		    
+        }
+        always {
+			
+            deleteDir()
+            cleanWs()
+           
+        }
+    }
+}
