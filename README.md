@@ -35,14 +35,15 @@ url)
 
 
 **Pending**
-- Jenkins Pipeline Setup for build, docker image Publish and Deployment on K8S Setup
+- Jenkins Pipeline Setup for build, docker image Publish and Deployment on K8S Setup (Done)
 - Sonarqube for Code Quality Check
 - Adding of Testing Tools for Continous Testing.
 - Security Tools Integration
 - Prometheous AlertManager Intergation
 - Grafana Integration
 
-  Sample App Code Taken From: https://github.com/callicoder/spring-boot-actuator-demo
+Sample App Code Taken From: https://github.com/callicoder/spring-boot-actuator-demo
   
 
-** Minikube Setp **
+**Minikube Setp**
+minikube  start --driver=docker
