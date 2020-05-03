@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: tomcat
-        image: rajeshm9/webapp
+        image: ${DOCKER_REPO}/${DOCKER_IMG_NAME}:${BUILD_NUM}
         ports:
         - containerPort: 9080
         readinessProbe:
@@ -24,12 +24,12 @@ spec:
            path: /health
            port: 9080
          initialDelaySeconds: 15
-         periodSeconds: 30
+         periodSeconds: 5
         livenessProbe:
          tcpSocket:
           port: 9080
          initialDelaySeconds: 10
-         periodSeconds: 30
+         periodSeconds: 5
         volumeMounts:
           - name: vol
             mountPath: /var/log/wepapp/logs
