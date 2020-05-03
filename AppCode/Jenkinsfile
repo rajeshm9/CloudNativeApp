@@ -3,8 +3,9 @@ pipeline {
     environment {
 		RELEASE_DATE = new Date().format('yy.M.d')
 		BUILD_NUM = "${RELEASE_DATE}.${BUILD_TAG}"
-		
-		
+		DOCKER_REPO="rajeshm9"
+        DOCKER_IMG_NAME="webapp"
+	
     }
 
     options {
@@ -23,13 +24,14 @@ pipeline {
 		stage ('Checkout Code')
 		{
 			steps {
-				echo "Build Code ${BUILD_NUM}"
+				echo "Checkout ${BUILD_NUM}"
 			}
 		}
         stage('Build Code')
         {
             steps {
 				echo "Build Code ${BUILD_NUM}"
+                sh "cd AppCode && mvn clean package"
 			}
         }
 
@@ -37,7 +39,17 @@ pipeline {
 		{
 			
 			steps {
-				echo "Deploying to Production Server "
+				echo "Build Docker Image"
+                sh "cd AppCode && docker build . -t rajeshm9/webapp:${RELEASE_DATE}"
+
+			}
+		}
+        stage('Push Docker Image')
+		{
+			
+			steps {
+				echo "Push Docker Image "
+                sh "cd AppCode && docker push rajeshm9/webapp:${RELEASE_DATE}"
 
 			}
 		}
