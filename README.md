@@ -44,3 +44,5 @@ url)
 
   Sample App Code Taken From: https://github.com/callicoder/spring-boot-actuator-demo
   
+
+** Minikube Setp **

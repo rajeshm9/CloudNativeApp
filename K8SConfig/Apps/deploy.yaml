@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: tomcat
-        image: rajeshm9/webapp
+        image: ${DOCKER_REPO}/${DOCKER_IMG_NAME}:${BUILD_NUM}
         ports:
         - containerPort: 9080
         readinessProbe:

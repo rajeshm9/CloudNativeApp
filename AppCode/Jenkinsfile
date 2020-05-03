@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-		RELEASE_DATE = new Date().format('yy.M.d')
-		BUILD_NUM = "${RELEASE_DATE}.${BUILD_TAG}"
+		RELEASE_DATE = new Date().format('yy.M')
+		BUILD_NUM = "${RELEASE_DATE}.${BUILD_NUMBER}"
 		DOCKER_REPO="rajeshm9"
         DOCKER_IMG_NAME="webapp"
 	
@@ -40,7 +40,7 @@ pipeline {
 			
 			steps {
 				echo "Build Docker Image"
-                sh "cd AppCode && docker build . -t rajeshm9/webapp:${RELEASE_DATE}"
+                sh "cd AppCode && docker build . -t ${DOCKER_REPO}/${DOCKER_IMG_NAME}:${BUILD_NUM}"
 
 			}
 		}
@@ -49,19 +49,27 @@ pipeline {
 			
 			steps {
 				echo "Push Docker Image "
-                sh "cd AppCode && docker push rajeshm9/webapp:${RELEASE_DATE}"
+                sh "cd AppCode && docker push ${DOCKER_REPO}/${DOCKER_IMG_NAME}:${BUILD_NUM}"
 
 			}
 		}
         stage('Deploy to K8S Cluster')
         {
             steps {
-				echo "Deploying to Production Server "
+				echo "Deploying to Production Server"
+                kubernetesDeploy(kubeconfigId: 'KUBECONFIG',               // REQUIRED
+                 configs: 'K8SConfig/Apps/deploy.yaml', // REQUIRED
+                 enableConfigSubstitution: true,
+                            
+                 dockerCredentials: [
+                        [credentialsId: 'DOCKER_LOGIN']
+                        
+                 ]
+)
 
 			}
         }
-   
-		
+   	
 		
     }
 	post {
