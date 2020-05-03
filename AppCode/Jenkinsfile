@@ -14,10 +14,11 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '25'))
 
     }
+    /*
     triggers {
 	
     }
-
+    */
     stages {
 		stage ('Checkout Code')
 		{
