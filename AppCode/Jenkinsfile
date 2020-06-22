@@ -15,11 +15,23 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '25'))
 
     }
-    /*
+    
     triggers {
-	
+         
+
+     	causeString: 'Triggered on ',
+
+     	token: 'rajesh',
+
+	    printContributedVariables: false,
+	    printPostContent: false,
+
+        silentResponse: false,
+
+        
+      )
     }
-    */
+    
     stages {
 		stage ('Checkout Code')
 		{
