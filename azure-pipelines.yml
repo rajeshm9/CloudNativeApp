@@ -77,7 +77,7 @@ stages:
          azureResourceGroup: 'myResourceGroup'
          kubernetesCluster: 'myAKSCluster'
          namespace: 'default'
-         command: 'install stable/nginx-ingress'
+         command: 'install'
          #command: 'helm install'
          chartType: 'Name'
          chartName: 'stable/nginx-ingress'
