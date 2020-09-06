@@ -1,3 +1,4 @@
+
 # Deploy to Azure Kubernetes Service
 # Build and push image to Azure Container Registry; Deploy to Azure Kubernetes Service
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
@@ -76,8 +77,8 @@ stages:
          azureResourceGroup: 'myResourceGroup'
          kubernetesCluster: 'myAKSCluster'
          namespace: 'default'
-         #command: 'helm update stable/nginx-ingress, helm install'
-         command: 'helm install'
+         command: 'helm update stable/nginx-ingress, helm install stable/nginx-ingress'
+         #command: 'helm install'
          chartType: 'Name'
          chartName: 'stable/nginx-ingress'
          overrideValues: 'test=shubhasis'
