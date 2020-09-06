@@ -33,7 +33,7 @@ stages:
     steps:
     - task: Maven@3
       inputs:
-        mavenPomFile: 'pom.xml'
+        mavenPomFile: 'AppCode/pom.xml'
         goals: 'package'
     - task: Docker@2
       displayName: Build and push an image to container registry
