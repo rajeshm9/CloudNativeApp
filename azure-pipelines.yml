@@ -63,6 +63,14 @@ stages:
      steps:
      - task: HelmDeploy@0
        inputs:
+        connectionType: 'Azure Resource Manager'
+        azureSubscription: 'Visual Studio Enterprise Subscription(bc96fb25-0001-4aeb-a9b7-4b49f30c94f5)'
+        azureResourceGroup: 'myResourceGroup'
+        kubernetesCluster: 'myAKSCluster'
+        command: 'repo'
+        arguments: 'add svc-cat https://svc-catalog-charts.storage.googleapis.com'
+     - task: HelmDeploy@0
+       inputs:
          connectionType: 'Azure Resource Manager'
          azureSubscription: 'Visual Studio Enterprise Subscription(bc96fb25-0001-4aeb-a9b7-4b49f30c94f5)'
          azureResourceGroup: 'myResourceGroup'
@@ -73,3 +81,5 @@ stages:
          chartName: 'stable/nginx-ingress'
          releaseName: 'nginx-ingress'
          valueFile: 'local_values.yaml'
+
+     
