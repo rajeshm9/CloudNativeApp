@@ -1,0 +1,16 @@
+apiVersion : apps/v1beta1
+kind: Deployment
+metadata:
+  name: rajeshmcloudnativeapp 
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rajeshmcloudnativeapp 
+    spec:
+      containers:
+        - name: rajeshmcloudnativeapp 
+          image: devopsdemodcr.azurecr.io/rajeshmcloudnativeapp
+          ports:
+          - containerPort: 80
