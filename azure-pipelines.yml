@@ -68,8 +68,14 @@ stages:
         azureSubscription: 'Visual Studio Enterprise Subscription(bc96fb25-0001-4aeb-a9b7-4b49f30c94f5)'
         azureResourceGroup: 'myResourceGroup'
         kubernetesCluster: 'myAKSCluster'
-        command: 'repo'
-        arguments: 'add svc-cat https://svc-catalog-charts.storage.googleapis.com'
+        namespace: 'default'
+        command: 'update'
+         #command: 'helm install'
+        chartType: 'Name'
+        chartName: 'stable/nginx-ingress'
+        overrideValues: 'test=shubhasis'
+        #command: 'repo'
+        #arguments: 'add svc-cat https://svc-catalog-charts.storage.googleapis.com'
      - task: HelmDeploy@0
        inputs:
          connectionType: 'Azure Resource Manager'
