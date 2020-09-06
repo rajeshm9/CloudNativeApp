@@ -32,23 +32,23 @@ stages:
     displayName: Build
     pool:
       vmImage: $(vmImageName)
-    steps:
-    - task: Maven@3
-      inputs:
-        mavenPomFile: 'AppCode/pom.xml'
-        goals: 'package'
-    - task: Docker@2
-      displayName: Build and push an image to container registry
-      inputs:
-        command: buildAndPush
-        repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
-        containerRegistry: $(dockerRegistryServiceConnection)
-        tags: |
-          $(tag)
+#    steps:
+#    - task: Maven@3
+#      inputs:
+#        mavenPomFile: 'AppCode/pom.xml'
+#        goals: 'package'
+#    - task: Docker@2
+#      displayName: Build and push an image to container registry
+#      inputs:
+#        command: buildAndPush
+#        repository: $(imageRepository)
+#        dockerfile: $(dockerfilePath)
+#        containerRegistry: $(dockerRegistryServiceConnection)
+#        tags: |
+#         $(tag)
           
-    - upload: manifests
-      artifact: manifests
+#    - upload: manifests
+#      artifact: manifests
 
 - stage: Deploy
   displayName: Deploy stage
