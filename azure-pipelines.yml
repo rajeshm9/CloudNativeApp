@@ -80,6 +80,5 @@ stages:
          chartType: 'Name'
          chartName: 'stable/nginx-ingress'
          overrideValues: 'test=shubhasis'
-         updateDependency: true
-
+         
      
