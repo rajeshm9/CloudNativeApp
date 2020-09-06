@@ -69,11 +69,10 @@ stages:
         azureResourceGroup: 'myResourceGroup'
         kubernetesCluster: 'myAKSCluster'
         namespace: 'default'
-        command: 'update'
-         #command: 'helm install'
-        chartType: 'Name'
-        chartName: 'stable/nginx-ingress'
-        overrideValues: 'test=shubhasis'
+        command: init
+        upgradetiller: true
+        waitForExecution: true
+        arguments: --client-only
         #command: 'repo'
         #arguments: 'add svc-cat https://svc-catalog-charts.storage.googleapis.com'
      - task: HelmDeploy@0
