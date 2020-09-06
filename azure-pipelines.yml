@@ -53,31 +53,16 @@ stages:
   dependsOn: Build
 
   jobs:
-  - deployment: Deploy
-    displayName: Deploy
-    pool:
+   - job: HelmInstall
+     displayName: HelmInstall
+     pool:
       vmImage: $(vmImageName)
-    environment: 'rajeshm9CloudNativeApp.default'
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - task: KubernetesManifest@0
-            displayName: Create imagePullSecret
-            inputs:
-              action: createSecret
-              secretName: $(imagePullSecret)
-              dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
-              
-          - task: KubernetesManifest@0
-            displayName: Deploy to Kubernetes cluster
-            inputs:
-              action: deploy
-              manifests: |
-                $(Pipeline.Workspace)/manifests/deployment.yml
-                $(Pipeline.Workspace)/manifests/service.yml
-              imagePullSecrets: |
-                $(imagePullSecret)
-              containers: |
-                $(containerRegistry)/$(imageRepository):$(tag)
-
+     steps:
+      - task: HelmInstall
+        inputs:
+          azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+          azureResourceGroup: $(azureResourceGroup)
+          kubernetesCluster: $(kubernetesCluster)
+          command: install
+          chartName: stable/nginx-ingress
+          
