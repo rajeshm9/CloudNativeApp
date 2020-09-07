@@ -92,7 +92,7 @@ stages:
               helm repo add nginx-stable https://helm.nginx.com/stable
               helm repo update
               helm repo list
-              helm install -f local_values.yaml nginx-stable/nginx-ingress
+              helm install -f local_values.yaml --name=rajesh nginx-stable/nginx-ingress
               az account show
           name: installnginx
       #  - task: HelmDeploy@0
