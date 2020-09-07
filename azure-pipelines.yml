@@ -89,10 +89,12 @@ stages:
               helm version
               pwd
               ls -rlt
-              helm repo add nginx-stable https://helm.nginx.com/stable
+              helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+              helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+
               helm repo update
               helm repo list
-              helm install -f local_values.yaml rajeshrel nginx-stable/nginx-ingress
+              helm install -f local_values.yaml rajeshrel stable/nginx-ingress
               az account show
           name: installnginx
       #  - task: HelmDeploy@0
