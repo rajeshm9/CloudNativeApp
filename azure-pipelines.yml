@@ -22,7 +22,7 @@ variables:
   
 
   # Agent VM image name
-  vmImageName: 'ubuntu:16.04'
+  vmImageName: 'ubuntu:latest'
   
 
 stages:
@@ -83,8 +83,8 @@ stages:
          azureResourceGroup: 'myResourceGroup'
          kubernetesCluster: 'myAKSCluster'
          namespace: 'default'
-         command: 'install'
-         #command: 'helm repo update'
+         #command: 'install'
+         command: 'helm repo add stable https://kubernetes-charts.storage.googleapis.com/" https://helm.sh/docs/intro/quickstart/'
          chartType: 'Name'
          chartName: 'stable/mysql'
          overrideValues: 'test=shubhasis'
