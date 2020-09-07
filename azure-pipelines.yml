@@ -94,7 +94,7 @@ stages:
 
               helm repo update
               helm repo list
-              helm install -f local_values.yaml rajeshrel stable/nginx-ingress
+              helm install -f local_values.yaml shubhasis stable/nginx-ingress
               az account show
           name: installnginx
       #  - task: HelmDeploy@0
