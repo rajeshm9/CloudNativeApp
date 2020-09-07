@@ -76,17 +76,24 @@ stages:
      #   arguments: --client-only
         #command: 'repo'
         #arguments: 'add svc-cat https://svc-catalog-charts.storage.googleapis.com'
-     - task: HelmDeploy@0
-       inputs:
-         connectionType: 'Azure Resource Manager'
-         azureSubscription: 'Visual Studio Enterprise Subscription(1)(bc96fb25-0001-4aeb-a9b7-4b49f30c94f5)'
-         azureResourceGroup: 'myResourceGroup'
-         kubernetesCluster: 'myAKSCluster'
-         namespace: 'default'
-         #command: 'install'
-         command: 'helm repo add stable https://kubernetes-charts.storage.googleapis.com/" https://helm.sh/docs/intro/quickstart/'
-         chartType: 'Name'
-         chartName: 'stable/mysql'
-         overrideValues: 'test=shubhasis'
+     -  script: |
+            helm version
+            helm repo add https://kubernetes-charts.storage.googleapis.com/
+            helm repo update
+            helm install my-release nginx-stable/nginx-ingress
+        name: install nginx
+    # - task: HelmDeploy@0
+       
+    #   inputs:
+    #     connectionType: 'Azure Resource Manager'
+    #     azureSubscription: 'Visual Studio Enterprise Subscription(1)(bc96fb25-0001-4aeb-a9b7-4b49f30c94f5)'
+    #     azureResourceGroup: 'myResourceGroup'
+    #     kubernetesCluster: 'myAKSCluster'
+    #     namespace: 'default'
+         
+         #command: 'helm repo add stable https://kubernetes-charts.storage.googleapis.com/" https://helm.sh/docs/intro/quickstart/'
+    #     chartType: 'Name'
+    #     chartName: 'stable/mysql'
+    #     overrideValues: 'test=shubhasis'
          
      
