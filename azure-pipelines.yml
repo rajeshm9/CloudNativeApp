@@ -79,7 +79,6 @@ stages:
         - task: AzureCLI@2
           displayName: Azure CLI
           inputs:
-            azureSubscription: bc96fb25-0001-4aeb-a9b7-4b49f30c94f5
             scriptType: ps
             scriptLocation: inlineScript
             inlineScript: |
@@ -90,7 +89,7 @@ stages:
               helm repo update
               helm install my-release nginx-stable/nginx-ingress
               az account show
-            name: installnginx
+          name: installnginx
     # - task: HelmDeploy@0
        
     #   inputs:
