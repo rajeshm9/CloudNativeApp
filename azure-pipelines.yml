@@ -84,7 +84,7 @@ stages:
          kubernetesCluster: 'myAKSCluster'
          namespace: 'default'
          command: 'install'
-         #command: 'helm install'
+         #command: 'helm repo update'
          chartType: 'Name'
          chartName: 'stable/mysql'
          overrideValues: 'test=shubhasis'
