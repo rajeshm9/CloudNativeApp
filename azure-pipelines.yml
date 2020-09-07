@@ -22,7 +22,7 @@ variables:
   
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+  vmImageName: 'ubuntu:18.04'
   
 
 stages:
