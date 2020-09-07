@@ -76,12 +76,21 @@ stages:
      #   arguments: --client-only
         #command: 'repo'
         #arguments: 'add svc-cat https://svc-catalog-charts.storage.googleapis.com'
-     -  script: |
-            helm version
-            helm repo add nginx-stable https://helm.nginx.com/stable
-            helm repo update
-            helm install my-release nginx-stable/nginx-ingress
-        name: installnginx
+        - task: AzureCLI@2
+          displayName: Azure CLI
+          inputs:
+            azureSubscription: bc96fb25-0001-4aeb-a9b7-4b49f30c94f5
+            scriptType: ps
+            scriptLocation: inlineScript
+            inlineScript: |
+              az --version
+              az aks get-credentials --name --myAKSCluster -g 
+              helm version
+              helm repo add nginx-stable https://helm.nginx.com/stable
+              helm repo update
+              helm install my-release nginx-stable/nginx-ingress
+              az account show
+            name: installnginx
     # - task: HelmDeploy@0
        
     #   inputs:
