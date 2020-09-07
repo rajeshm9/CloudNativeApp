@@ -106,7 +106,7 @@ stages:
               helm repo update
               helm install my-release-1 nginx-stable/nginx-ingress
               az account show
-          name: installnginx
+  name: installnginx
     # - task: HelmDeploy@0
        
     #   inputs:
