@@ -88,6 +88,21 @@ stages:
               az aks get-credentials -n myAKSCluster -g myResourceGroup
               helm version
               helm repo add nginx-stable https://helm.nginx.com/stable
+- task: HelmDeploy@0
+  inputs:
+    connectionType: 'Azure Resource Manager'
+    azureSubscription: 'Visual Studio Enterprise Subscription(4)(bc96fb25-0001-4aeb-a9b7-4b49f30c94f5)'
+    azureResourceGroup: 'myResourceGroup'
+    kubernetesCluster: 'myAKSCluster'
+    namespace: 'default'
+    command: 'upgrade'
+    chartType: 'FilePath'
+    chartPath: 'nginx-stable/nginx-ingress'
+    chartVersion: '1'
+    releaseName: 'my-release-1'
+    overrideValues: 'NAME=SHUBHASIS'
+    recreate: true
+    force: true
               helm repo update
               helm install my-release-1 nginx-stable/nginx-ingress
               az account show
