@@ -131,9 +131,11 @@ controller:
 
   ## Additional environment variables to set
   #extraEnvs: []
-   extraEnvs:
-    - name: FOO
+  extraEnvs:
+    - name: name
       value: rajesh 
+    - name: company
+      value: xyz
   #       secretKeyRef:
   #         key: FOO
   #         name: secret-resource
