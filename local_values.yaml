@@ -1,6 +1,7 @@
-
-  ## Additional environment variables to set
-  #extraEnvs: []
+## nginx configuration
+## Ref: https://github.com/kubernetes/ingress/blob/master/controllers/nginx/configuration.md
+##
+controller:
   extraEnvs:
     - name: FOO_NAME
-      value: Rajesh
+      value: My-SHubhasis
