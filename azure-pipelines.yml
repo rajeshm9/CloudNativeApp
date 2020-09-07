@@ -87,26 +87,29 @@ stages:
               echo $Myname
               az aks get-credentials -n myAKSCluster -g myResourceGroup
               helm version
+              pwd
+              ls -rlt
               helm repo add nginx-stable https://helm.nginx.com/stable
               helm repo update
-              helm install my-release-1 nginx-stable/nginx-ingress
+              helm repo list
+              helm install -f local_values.yaml nginx-stable/nginx-ingress
               az account show
           name: installnginx
-        - task: HelmDeploy@0
-          inputs:
-            connectionType: 'Azure Resource Manager'
-            azureSubscription: 'Visual Studio Enterprise Subscription(4)(bc96fb25-0001-4aeb-a9b7-4b49f30c94f5)'
-            azureResourceGroup: 'myResourceGroup'
-            kubernetesCluster: 'myAKSCluster'
-            namespace: 'default'
-            command: 'upgrade'
-            chartType: 'FilePath'
-            chartPath: 'nginx-stable/nginx-ingress'
-            chartVersion: '1'
-            releaseName: 'my-release-1'
-            overrideValues: 'NAME=SHUBHASIS'
-            #recreate: true
-            force: true
+      #  - task: HelmDeploy@0
+      #    inputs:
+      #      connectionType: 'Azure Resource Manager'
+      #      azureSubscription: 'Visual Studio Enterprise Subscription(4)(bc96fb25-0001-4aeb-a9b7-4b49f30c94f5)'
+      #      azureResourceGroup: 'myResourceGroup'
+      #      kubernetesCluster: 'myAKSCluster'
+      #      namespace: 'default'
+      #      command: 'upgrade'
+      #      chartType: 'FilePath'
+      #      chartPath: 'nginx-stable/nginx-ingress'
+      ##      chartVersion: '1'
+      #      releaseName: 'my-release-1'
+      #      overrideValues: 'NAME=SHUBHASIS'
+      #      #recreate: true
+      #      force: true
     # - task: HelmDeploy@0
        
     #   inputs:
