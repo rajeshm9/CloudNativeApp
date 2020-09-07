@@ -84,6 +84,7 @@ stages:
             scriptLocation: 'inlineScript'
             inlineScript: |
               az --version
+              echo $Myname
               az aks get-credentials -n myAKSCluster -g myResourceGroup
               helm version
               helm repo add nginx-stable https://helm.nginx.com/stable
